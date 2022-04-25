@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.necauqua.mods.cm.mixin.compat",
-  "refmap": "chiseled-me.mixins.refmap.json",
+  "refmap": "chiseled-me.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CustomNpcFixMixin",

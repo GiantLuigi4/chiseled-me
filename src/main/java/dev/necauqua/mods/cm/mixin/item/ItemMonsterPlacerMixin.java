@@ -38,20 +38,20 @@ public final class ItemMonsterPlacerMixin {
         return pos;
     }
 
-    @ModifyConstant(method = "onItemUse", constant = @Constant(doubleValue = 0.5, ordinal = 0))
-    double onItemUseX(double constant, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        return hitX;
-    }
-
-    @ModifyVariable(method = "onItemUse", ordinal = 0, at = @At("STORE"))
-    double onItemUseY(double d0, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        return hitY;
-    }
-
-    @ModifyConstant(method = "onItemUse", constant = @Constant(doubleValue = 0.5, ordinal = 1))
-    double onItemUseZ(double constant, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        return hitZ;
-    }
+//    @ModifyConstant(method = "onItemUse", constant = @Constant(doubleValue = 0.5, ordinal = 0))
+//    double onItemUseX(double constant, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+//        return hitX;
+//    }
+//
+//    @ModifyVariable(method = "onItemUse", ordinal = 0, at = @At("STORE"))
+//    double onItemUseY(double d0, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+//        return hitY;
+//    }
+//
+//    @ModifyConstant(method = "onItemUse", constant = @Constant(doubleValue = 0.5, ordinal = 1))
+//    double onItemUseZ(double constant, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+//        return hitZ;
+//    }
 
     @Inject(method = "onItemRightClick", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemMonsterPlacer;spawnCreature(Lnet/minecraft/world/World;Lnet/minecraft/util/ResourceLocation;DDD)Lnet/minecraft/entity/Entity;"))
     void onItemRightClick(World world, EntityPlayer player, EnumHand hand, CallbackInfoReturnable<ActionResult<ItemStack>> cir) {
@@ -69,9 +69,9 @@ public final class ItemMonsterPlacerMixin {
             return;
         }
         self.setLocationAndAngles(
-                x + $cm$facingHack.getFrontOffsetX() * self.width / 2.0,
+                x + $cm$facingHack.getXOffset() * self.width / 2.0,
                 $cm$facingHack == EnumFacing.DOWN ? y - self.height : y,
-                z + $cm$facingHack.getFrontOffsetZ() * self.width / 2.0,
+                z + $cm$facingHack.getZOffset() * self.width / 2.0,
                 yaw, pitch);
         $cm$facingHack = null;
     }
@@ -88,9 +88,9 @@ public final class ItemMonsterPlacerMixin {
             return;
         }
         self.setLocationAndAngles(
-                x + $cm$facingHack.getFrontOffsetX() * self.width / 2.0,
+                x + $cm$facingHack.getXOffset() * self.width / 2.0,
                 $cm$facingHack == EnumFacing.DOWN ? y - self.height : y,
-                z + $cm$facingHack.getFrontOffsetZ() * self.width / 2.0,
+                z + $cm$facingHack.getZOffset() * self.width / 2.0,
                 yaw, pitch);
         $cm$facingHack = null;
     }
@@ -102,9 +102,9 @@ public final class ItemMonsterPlacerMixin {
             return ForgeEventFactory.doSpecialSpawn(entity, world, x, y, z, spawner);
         }
         boolean res = ForgeEventFactory.doSpecialSpawn(entity, world,
-                x + $cm$facingHack.getFrontOffsetX() * entity.width / 2.0f,
+                x + $cm$facingHack.getXOffset() * entity.width / 2.0f,
                 $cm$facingHack == EnumFacing.DOWN ? y - entity.height : y,
-                z + $cm$facingHack.getFrontOffsetZ() * entity.width / 2.0f,
+                z + $cm$facingHack.getZOffset() * entity.width / 2.0f,
                 spawner);
         $cm$facingHack = null;
         return res;
@@ -119,9 +119,9 @@ public final class ItemMonsterPlacerMixin {
             return ForgeEventFactory.doSpecialSpawn(entity, world, x, y, z, spawner);
         }
         boolean res = ForgeEventFactory.doSpecialSpawn(entity, world,
-                x + $cm$facingHack.getFrontOffsetX() * entity.width / 2.0f,
+                x + $cm$facingHack.getXOffset() * entity.width / 2.0f,
                 $cm$facingHack == EnumFacing.DOWN ? y - entity.height : y,
-                z + $cm$facingHack.getFrontOffsetZ() * entity.width / 2.0f,
+                z + $cm$facingHack.getZOffset() * entity.width / 2.0f,
                 spawner);
         $cm$facingHack = null;
         return res;

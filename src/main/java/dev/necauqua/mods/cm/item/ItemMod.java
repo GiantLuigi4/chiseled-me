@@ -17,7 +17,7 @@ public class ItemMod extends Item {
 
     public ItemMod(String name) {
         setRegistryName(ns(name));
-        setUnlocalizedName(MODID + ":" + name);
+        setTranslationKey(MODID + ":" + name);
         setCreativeTab(ChiseledMe.TAB);
     }
 

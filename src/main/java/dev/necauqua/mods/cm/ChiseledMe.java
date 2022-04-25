@@ -57,12 +57,12 @@ public final class ChiseledMe {
     public static final String KEEP_SIZE_RULE = MODID + ":keepSize";
 
     public static final CreativeTabs TAB = new CreativeTabs(MODID) {
-
+    
         @Override
-        @Nonnull
-        public ItemStack getTabIconItem() {
+        public ItemStack createIcon() {
             return RECALIBRATOR.create(REDUCTION, (byte) 1);
         }
+    
     };
 
     public static final ItemRecalibrator RECALIBRATOR = new ItemRecalibrator();

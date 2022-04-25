@@ -15,8 +15,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.transformer.MixinProcessor;
 import org.spongepowered.asm.mixin.transformer.Proxy;
+import org.spongepowered.asm.mixin.transformer.ext.Extensions;
+import org.spongepowered.asm.service.ISyntheticClassInfo;
+import org.spongepowered.asm.service.ISyntheticClassRegistry;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -60,14 +62,19 @@ public final class ClassloadingHackMixin {
             processorField.setAccessible(true);
             Object processor = processorField.get(transformer);
 
-            Method selectConfigsMethod = MixinProcessor.class.getDeclaredMethod("selectConfigs", MixinEnvironment.class);
-            Method prepareConfigsMethod = MixinProcessor.class.getDeclaredMethod("prepareConfigs", MixinEnvironment.class);
+            Extensions extensions;
+            Field f = processor.getClass().getDeclaredField("extensions");
+            f.setAccessible(true);
+            extensions = (Extensions) f.get(processor);
+            
+            Method selectConfigsMethod = processor.getClass().getDeclaredMethod("selectConfigs", MixinEnvironment.class);
+            Method prepareConfigsMethod = processor.getClass().getDeclaredMethod("prepareConfigs", MixinEnvironment.class, Extensions.class);
             selectConfigsMethod.setAccessible(true);
             prepareConfigsMethod.setAccessible(true);
 
             MixinEnvironment environment = MixinEnvironment.getCurrentEnvironment();
             selectConfigsMethod.invoke(processor, environment);
-            prepareConfigsMethod.invoke(processor, environment);
+            prepareConfigsMethod.invoke(processor, environment, extensions);
 
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);

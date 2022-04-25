@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.necauqua.mods.cm.mixin",
-  "refmap": "chiseled-me.mixins.refmap.json",
+  "refmap": "chiseled-me.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "NetHandlerPlayServerMixin",
@@ -86,7 +86,9 @@
     "entity.EntityVillagerMixin",
     "entity.player.EntityOtherPlayerMPMixin",
     "entity.player.EntityPlayerSPMixin",
-    "entity.projectile.EntityStatusUpdateParticlesMixin"
+    "entity.projectile.EntityStatusUpdateParticlesMixin",
+    "access.GuiNewChatAccessor",
+    "access.EntityItemAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

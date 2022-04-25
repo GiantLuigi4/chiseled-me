@@ -33,7 +33,7 @@ public final class ServerWorldEventHandlerMixin implements IWorldPreciseEvents, 
     public void playEvent(EntityPlayer player, int type, BlockPos blockPos, int data, double size, Vec3d pos) {
         SPacketEffect packet = new SPacketEffect(type, blockPos, data, false);
         ((IPreciseEffectPacket) packet).populateCM(size, pos);
-        mcServer.getPlayerList()
+        server.getPlayerList()
                 .sendToAllNearExcept(player, blockPos.getX(), blockPos.getY(), blockPos.getZ(), 64.0D * size, world.provider.getDimension(), packet);
     }
 
@@ -49,13 +49,13 @@ public final class ServerWorldEventHandlerMixin implements IWorldPreciseEvents, 
         if (Config.scaleSounds) {
             ((IPreciseEffectPacket) packet).populateCM(size, pos);
         }
-        mcServer.getPlayerList()
+        server.getPlayerList()
                 .sendToAllNearExcept(player, pos.x, pos.y, pos.z, (volume > 1.0f ? (16.0 * volume) : 16.0) * size, world.provider.getDimension(), packet);
     }
 
     @Shadow
     @Final
-    private MinecraftServer mcServer;
+    private MinecraftServer server;
 
     @Shadow
     @Final

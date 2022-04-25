@@ -196,7 +196,7 @@ public final class EntitySizeInteractions {
             if (nbt != null && nbt.hasKey(NBT_KEY_SIZE, 6)) {
                 ((ISized) entity).setSizeCM(nbt.getDouble(NBT_KEY_SIZE));
                 nbt.removeTag(NBT_KEY_SIZE);
-                if (nbt.hasNoTags()) {
+                if (nbt.isEmpty()) {
                     stack.setTagCompound(null);
                 }
             }
