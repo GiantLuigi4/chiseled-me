@@ -84,8 +84,8 @@ jar {
     //noinspection GroovyAssignabilityCheck
     manifest {
         attributes([
-                "Specification-Title"     : "qolbackport",
-                //"Specification-Vendor": "qolbackport authors",
+                "Specification-Title"     : "chiseled me",
+                //"Specification-Vendor": "necauqua",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
