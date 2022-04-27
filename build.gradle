@@ -13,8 +13,8 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-group = 'tfc'
-version = '3.0.0.0-git-e5ce416'
+group = 'dev.necauqua'
+version = '3.0.0.0-mixinbootstrap'
 
 java {
     archivesBaseName = 'chiseled-me-1.12'
