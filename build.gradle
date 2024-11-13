@@ -14,7 +14,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'tfc'
-version = '3.0.0.0-git-e5ce416'
+version = '3.0.0.0-mixin_fix'
 
 java {
     archivesBaseName = 'chiseled-me-1.12'
@@ -24,7 +24,8 @@ java {
 minecraft {
     mappings channel: 'stable', version: '39-1.12'
 
-//    accessTransformer = file('src/main/resources/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/accesstransformer.cfg')
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -36,7 +37,7 @@ minecraft {
 
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
-//            property 'fml.coreMods.load', 'dev.necauqua.mods.cm.launch.MixinTrigger'
+            property 'fml.coreMods.load', 'dev.necauqua.mods.cm.launch.MixinTrigger'
 
             mods {
                 qolbackport {
@@ -50,7 +51,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-//            property 'fml.coreMods.load', 'dev.necauqua.mods.cm.launch.MixinTrigger'
+            property 'fml.coreMods.load', 'dev.necauqua.mods.cm.launch.MixinTrigger'
 
             mods {
                 qolbackport {
@@ -79,6 +80,10 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
+processResources {
+    rename '(accesstransformer\\.cfg|mods\\.toml|coremods\\.json)', 'META-INF/$1'
+}
+
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     //noinspection GroovyAssignabilityCheck
@@ -93,6 +98,7 @@ jar {
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
         // https://github.com/Meldexun/BlockOverlayFix/blob/51f576479db14e59480b92c832ed5d39ddb80519/build.gradle#L64-L69
+        attributes 'FMLAT': "accesstransformer.cfg"
         attributes 'MixinConfigs': 'chiseled-me.mixins.json'
         attributes 'FMLCorePlugin': 'dev.necauqua.mods.cm.launch.MixinTrigger'
         attributes 'FMLCorePluginContainsFMLMod': 'true'

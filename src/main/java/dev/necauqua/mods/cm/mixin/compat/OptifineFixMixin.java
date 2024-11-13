@@ -5,7 +5,6 @@
 
 package dev.necauqua.mods.cm.mixin.compat;
 
-import dev.necauqua.mods.cm.mixin.access.EntityItemAccessor;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
@@ -24,6 +23,6 @@ public final class OptifineFixMixin {
     @Dynamic // shut up the plugin
     @Redirect(method = "getItemStack", at = @At(value = "FIELD", opcode = GETSTATIC, target = "Lnet/optifine/DynamicLights;PARAMETER_ITEM_STACK:Lnet/minecraft/network/datasync/DataParameter;"))
     private static DataParameter<ItemStack> getItemStack() {
-        return EntityItemAccessor.$cm$getITEM();
+        return EntityItem.ITEM;
     }
 }

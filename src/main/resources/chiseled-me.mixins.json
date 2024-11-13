@@ -88,7 +88,6 @@
     "entity.player.EntityPlayerSPMixin",
     "entity.projectile.EntityStatusUpdateParticlesMixin",
     "access.GuiNewChatAccessor",
-    "access.EntityItemAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
