@@ -87,7 +87,7 @@
     "entity.player.EntityOtherPlayerMPMixin",
     "entity.player.EntityPlayerSPMixin",
     "entity.projectile.EntityStatusUpdateParticlesMixin",
-    "access.GuiNewChatAccessor",
+    "access.GuiNewChatAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
